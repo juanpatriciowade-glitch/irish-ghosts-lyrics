@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Irish Ghosts — Lyric Book</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0b; --card:#16161a; --border:#2a2a35;
+  --green:#4a9e6b; --gold:#c9a84c; --gold-light:#e8c97a;
+  --text:#e8e0d0; --muted:#8a8070; --white:#f5f0e8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'IM Fell English',Georgia,serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(74,158,107,.05) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(201,168,76,.05) 0%,transparent 60%);pointer-events:none;z-index:0;}
+
+header{position:relative;z-index:1;text-align:center;padding:52px 20px 34px;border-bottom:1px solid var(--border);}
+.shamrocks{display:flex;justify-content:center;gap:14px;margin-bottom:16px;}
+.shamrock{font-size:1.3rem;color:var(--green);display:inline-block;animation:sway 3s ease-in-out infinite;}
+.shamrock:nth-child(2){animation-delay:.3s}.shamrock:nth-child(3){animation-delay:.6s}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.band-name{font-family:'Cinzel Decorative',serif;font-size:clamp(1.8rem,6vw,3.4rem);font-weight:700;letter-spacing:.08em;background:linear-gradient(135deg,var(--gold),var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.subtitle{font-family:'Cinzel',serif;font-size:clamp(.65rem,2vw,.9rem);letter-spacing:.35em;color:var(--muted);text-transform:uppercase;margin-top:10px;}
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px auto 0;max-width:360px;}
+.divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.divider-sym{color:var(--gold);font-size:1rem;}
+
+.search-wrap{position:relative;z-index:1;max-width:560px;margin:30px auto 0;padding:0 20px;}
+.search-input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:13px 18px 13px 46px;color:var(--text);font-family:'IM Fell English',serif;font-size:1rem;outline:none;transition:border-color .3s,box-shadow .3s;}
+.search-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(74,158,107,.12);}
+.search-input::placeholder{color:var(--muted);}
+.search-icon{position:absolute;left:34px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;}
+.song-count{text-align:center;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--muted);margin-top:10px;}
+
+.main{position:relative;z-index:1;display:grid;grid-template-columns:260px 1fr;max-width:1060px;margin:34px auto 60px;padding:0 20px;min-height:500px;}
+
+.sidebar{border-right:1px solid var(--border);padding-right:20px;}
+.sidebar-title{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.song-list{list-style:none;display:flex;flex-direction:column;gap:2px;}
+.song-item{cursor:pointer;padding:9px 12px;border-radius:3px;font-size:.87rem;color:var(--muted);transition:all .2s;border:1px solid transparent;display:flex;align-items:flex-start;gap:8px;}
+.song-item:hover{background:var(--card);color:var(--text);border-color:var(--border);}
+.song-item.active{background:var(--card);color:var(--gold-light);border-color:rgba(201,168,76,.3);}
+.song-num{font-family:'Cinzel',serif;font-size:.62rem;color:var(--border);min-width:18px;padding-top:2px;transition:color .2s;}
+.song-item.active .song-num{color:var(--gold);}
+
+.lyrics-panel{padding-left:36px;}
+.lyrics-header{margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.lyrics-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,3vw,1.85rem);font-weight:400;color:var(--gold-light);line-height:1.2;margin-bottom:6px;}
+.lyrics-meta{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;}
+.verse{margin-bottom:22px;line-height:1.95;}
+.chorus{margin:22px 0;padding:16px 20px;border-left:2px solid var(--green);background:rgba(74,158,107,.05);border-radius:0 4px 4px 0;font-style:italic;line-height:1.95;color:var(--white);}
+.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:400px;gap:14px;}
+.welcome-icon{font-size:2.8rem;opacity:.2;}
+.welcome-text{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;}
+
+footer{position:relative;z-index:1;text-align:center;padding:20px;border-top:1px solid var(--border);font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+
+@media(max-width:680px){
+  .main{grid-template-columns:1fr;gap:24px;}
+  .sidebar{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:20px;}
+  .song-list{display:grid;grid-template-columns:1fr 1fr;}
+  .lyrics-panel{padding-left:0;}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="shamrocks"><span class="shamrock">☘</span><span class="shamrock">☘</span><span class="shamrock">☘</span></div>
+  <h1 class="band-name">The Irish Ghosts</h1>
+  <p class="subtitle">Lyric Book &nbsp;·&nbsp; La Misa Ghost</p>
+  <div class="divider"><div class="divider-line"></div><span class="divider-sym">✦</span><div class="divider-line"></div></div>
+</header>
+<div class="search-wrap">
+  <span class="search-icon">⌕</span>
+  <input class="search-input" type="text" placeholder="Buscar canción..." id="searchInput" oninput="filterSongs()">
+  <div class="song-count" id="songCount"></div>
+</div>
+<div class="main">
+  <nav class="sidebar">
+    <div class="sidebar-title">Repertorio</div>
+    <ul class="song-list" id="songList"></ul>
+  </nav>
+  <div class="lyrics-panel" id="lyricsPanel">
+    <div class="welcome"><div class="welcome-icon">☘</div><div class="welcome-text">Seleccioná una canción</div></div>
+  </div>
+</div>
+<footer>The Irish Ghosts &nbsp;·&nbsp; @theshamrockba &nbsp;·&nbsp; Slainte ☘</footer>
+<script>
+const songs = [
+  { title: "Whiskey in the Jar", lyrics: `<div class="verse">As I was a goin' over the far famed Kerry mountainsI met with captain Farrell and his money he was countingI first produced my pistol and I then produced my rapierSaying "Stand and deliver" for he were a bold deceiver</div>
+<div class="chorus">Mush-a ring dumb-a do dumb-a daWack fall the daddy-o, wack fall the daddy-oThere's whiskey in the jar</div>
+<div class="verse">I counted out his money and it made a pretty pennyI put it in me pocket and I took it home to JennyShe sighed and she swore that she never would deceive meBut the devil take the women for they never can be easy</div>
+<div class="chorus">Mush-a ring dumb-a do dumb-a daWack fall the daddy-o, wack fall the daddy-oThere's whiskey in the jar</div>
+<div class="verse">I went up to my chamber, all for to take a slumberI dreamt of gold and jewels and for sure 't was no wonderBut Jenny blew me charges and she filled them up with waterThen sent for captain Farrell to be ready for the slaughter</div>
+<div class="chorus">Mush-a ring dumb-a do dumb-a daWack fall the daddy-o, wack fall the daddy-oThere's whiskey in the jar</div>
+<div class="verse">And 't was early in the morning, just before I rose to travelUp comes a band of footmen and likewise captain FarrellI first produced me pistol for she stole away me rapierI couldn't shoot the water, so a prisoner I was taken</div>
+<div class="chorus">Mush-a ring dumb-a do dumb-a daWack fall the daddy-o, wack fall the daddy-oThere's whiskey in the jar</div>
+<div class="verse">And if anyone can aid me 't is my brother in the armyIf I can find his station in Cork or in KillarneyAnd if he'll go with me, we'll go rovin' through KillkenneyAnd I'm sure he'll treat me better than my own a-sporting Jenny</div>
+<div class="chorus">Mush-a ring dumb-a do dumb-a daWack fall the daddy-o, wack fall the daddy-oThere's whiskey in the jar</div>
+` },
+  { title: "The Irish Rover", lyrics: `<div class="verse">On the fourth of July, 1806We set sail from the sweet cove of CorkWe were sailing away with a cargo of bricksFor the Grand City Hall in New York</div>
+<div class="verse">'Twas a wonderful craftShe was rigged fore and aftAnd oh, how the wild wind drove herShe stood several blastsShe had twenty-seven mastsAnd they called her The Irish Rover</div>
+<div class="verse">We had one million bags of the best Sligo RagsWe had two million barrels of stoneWe had three million sides of old blind horses hidesWe had four million barrels of bones</div>
+<div class="verse">We had five million hogsSix million dogsSeven million barrels of porterWe had eight million bails of old nanny goats' tailsIn the hold of The Irish Rover</div>
+<div class="verse">There was ol' Mickey CooteWho played hard on his fluteWhen the ladies lined up for a setHe was tootin' with skillFor each sparkling quadrilleThough the dancers were fluther'd and bet</div>
+<div class="verse">With his smart witty talkHe was cock of the walkAnd he rolled the dames under and overThey all knew at a glanceWhen he took up his stanceThat he sailed in The Irish Rover</div>
+<div class="verse">There was Barney McGeeFrom the banks of the LeeThere was Hogan from County TyroneThere was Johnny McGurkWho was scared stiff of workAnd a man from Westmeath called Malone</div>
+<div class="verse">There was Slugger O'TooleWho was drunk as a ruleAnd fighting Bill Treacy from DoverAnd your man, Mick MacCannFrom the banks of the BannWas the skipper on The Irish Rover</div>
+<div class="verse">For the sailor it's always a bother in lifeIt's so lonesome by night and by dayThat he longs for the shoreAnd a charming young whoreWho will melt all his troubles away</div>
+<div class="verse">Oh, the noise and the routSwillin' poitin and stoutFor him soon the torment's overOf the love of a maid, he is never afraidThat old salt from The Irish Rover</div>
+<div class="verse">We had sailed seven yearsWhen the measles broke outAnd the ship lost its way in the fogAnd that whale of a crewWas reduced down to twoJust myself and the Captain's old dog</div>
+<div class="verse">Then the ship struck a rockOh Lord, what a shockThe bulkhead was turned right overTurned nine times aroundAnd the poor old dog was drownedAnd the last of The Irish Rover</div>
+` },
+  { title: "The Rocky Road to Dublin", lyrics: `<div class="verse">Well in the merry month of May from me home I startedLeft the girls of Tuam nearly broken heartedSaluted father dear kissed me darlin' motherDrank a pint of beer, me grief and tears to smotherThen off to reap the corn and leave where I was bornI cut a stout blackthorn to banish ghost and goblinIn a brand new pair of brogues I rattled o'er the bogsAnd frightened all the dogs on the rocky road to Dublin</div>
+<div class="chorus">One, two, three, four, fiveHunt the hare and turn her down the rocky roadAnd all the ways to Dublin whack-fol-lol-de-ra</div>
+<div class="verse">In Mullingar that night I rested limbs so wearyStarted by daylight, next mornin' light and airyTook a drop of the pure to keep my heart from sinkin'That's the Paddy's cure whene'er he's on for drinkingTo see the lasses smile laughing all the whileAt my curious style, 'twould set your heart a-bubblin'They ax'd if I was hired, the wages I requiredTill I was almost tired of the rocky road to Dublin</div>
+<div class="chorus">One, two, three, four, fiveHunt the hare and turn her down the rocky roadAnd all the ways to Dublin whack-fol-lol-de-ra</div>
+<div class="verse">In Dublin next arrived I thought it such a pityTo be so soon deprived a view of that fine cityThen I took a stroll all among the qualityMy bundle it was stole, all in a neat localitySomething crossed my mind, then I looked behind</div>
+<div class="verse">No bundle could I find, upon my stick a wobblin'Enquirin' for the rogue, they said my Connaught brogueWasn't much in vogue on the rocky road to Dublin</div>
+<div class="chorus">One, two, three, four, fiveHunt the hare and turn her down the rocky roadAnd all the ways to Dublin whack-fol-lol-de-ra</div>
+<div class="verse">From there I got away my spirits never failin'Landed on the quay as the ship was sailin'Captain at me roared, said that no room had heWhen I jumped aboard, a cabin found for PaddyDown among the pigs, I played some funny rigsDanced some hearty jigs, the water round me bubblin'When off Holyhead, I wished myself was deadOr better far instead on the rocky road to Dublin</div>
+<div class="chorus">One, two, three, four, fiveHunt the hare and turn her down the rocky roadAnd all the ways to Dublin whack-fol-lol-de-ra</div>
+<div class="verse">The boys of Liverpool when we safely landedCalled myself a fool, I could no longer stand itBlood began to boil, temper I was losin'Poor ould Erin's isle, they began abusin'"Hurrah my soul, " sez I, my shillelagh I let flySome Galway boys were by, saw I was a hobble inThen with a loud hurray, they joined in the affrayWe quickly cleared the way for the rocky road to Dublin</div>
+<div class="chorus">One, two, three, four, fiveHunt the hare and turn her down the rocky roadAnd all the ways to Dublin whack-fol-lol-de-ra</div>
+` },
+  { title: "The Galway Girl", lyrics: `<div class="verse">Well, I took a stroll on the old long walkOf a day -I-ay-I-ayI met a little girl and we stopped to talkOn a grand soft day -I-ay-I-ayAnd I ask you, friend, what's a fella to do'Cause her hair was black and her eyes were blueAnd I knew right then I'd be takin' a whirl'Down the Salthill Prom with a Galway girl</div>
+<div class="verse">We were halfway there when the rain came downOf a day -I-ay-I-ayAnd she took me up to her flat downtownOn a grand soft day -I-ay-I-ayAnd I ask you, friend, what's a fella to do'Cause her hair was black and her eyes were blueSo I took her hand and I gave her a twirlAnd then I lost my heart to a Galway girl</div>
+<div class="verse">When I woke up I was all aloneWith a broken heart and a ticket homeAnd I ask you friend, what would you doIf her hair was black and her eyes were blueSee I've traveled around I've been all over the worldBoys I ain't never seen nothin' like a Galway girl</div>
+` },
+  { title: "The Wild Rover", lyrics: `<div class="verse">I've been a wild rover for many's the yearAnd I've spent all me money on whiskey and beerBut now I'm returning with gold in great storeAnd I never will play the wild rover no more</div>
+<div class="chorus">And it's no, nay, neverNo, nay never no moreWill I play the wild roverNo never no more</div>
+<div class="verse">I went to an alehouse I used to frequentI told the landlady my money was spentI ask her for credit, she answered me naySuch a custom as yours I can have any day</div>
+<div class="chorus">And it's no, nay, neverNo, nay never no moreWill I play the wild roverNo never no more</div>
+<div class="verse">I brought from me pocket ten sovereigns brightAnd the landlady's eyes opened wide with delightShe said:'I have whiskeys and wines of the bestAnd the words that you told me were only in jest'</div>
+<div class="chorus">And it's no, nay, neverNo, nay never no moreWill I play the wild roverNo never no more</div>
+<div class="verse">I'll go home to my parents, confess what I've doneAnd I'll ask them to pardon their prodigal sonAnd when they've caressed me, as oft times beforeI never will play the wild rover no more</div>
+<div class="chorus">And it's no, nay, neverNo, nay never no moreWill I play the wild roverNo never no more</div>
+<div class="chorus">And it's no, nay, neverNo, nay never no moreWill I play the wild roverNo never no more</div>
+` },
+  { title: "Fields of Athenry", lyrics: `<div class="verse">By a lonely prison wallI heard a young girl calling"Michael, they have taken you awayFor you stole Trevelyan's cornSo the young might see the mornNow a prison ship lies waiting in the bay"</div>
+<div class="chorus">Low lie the fields of AthenryWhere once we watched the small free birds flyOur love was on the wing we had dreams and songs to singIt's so lonely 'round the fields of Athenry</div>
+<div class="verse">By a lonely prison wallI heard a young man calling"Nothing matters, Mary, when you're freeAgainst the famine and the crownI rebelled, they cut me downNow you must raise our child with dignity"</div>
+<div class="chorus">Low lie the fields of AthenryWhere once we watched the small free birds flyOur love was on the wing we had dreams and songs to singIt's so lonely 'round the fields of Athenry</div>
+<div class="verse">By a lonely harbour wallShe watched the last star fallingAs that prison ship sailed out against the skyFor she lived in hope and prayFor her love in Botany BayIt's so lonely 'round the fields of Athenry</div>
+<div class="chorus">Low lie the fields of AthenryWhere once we watched the small free birds flyOur love was on the wing we had dreams and songs to singIt's so lonely 'round the fields of Athenry</div>
+` },
+  { title: "Molly Malone (Cockles and Mussles)", lyrics: `<div class="chorus">In Dublin's fair cityWhere the girls are so prettyI first set my eyes on sweet Molly MaloneAs she wheeled her wheelbarrowThrough streets broad and narrowCrying, "Cockles and mussels, alive, alive, oh!"</div>
+<div class="chorus">Alive, alive, ohAlive, alive, ohCrying, "Cockles and mussels, alive, alive, oh"</div>
+<div class="chorus">She was a fishmongerAnd sure 'twas no wonderFor so were her father and mother beforeAnd they both wheeled their barrowsThrough streets broad and narrowCrying, "Cockles and mussels, alive, alive, oh</div>
+<div class="chorus">Alive, alive, ohAlive, alive, ohCrying, "Cockles and mussels, alive, alive, oh</div>
+<div class="chorus">She died of a feverAnd no one could save herAnd that was the end of sweet Molly MaloneBut her ghost wheels her barrowThrough streets broad and narrowCrying, "Cockles and mussels, alive, alive, oh</div>
+<div class="chorus">Alive, alive, ohAlive, alive, ohCrying, "Cockles and mussels, alive, alive, oh</div>
+<div class="chorus">Alive, alive, ohAlive, alive, ohCrying, "Cockles and mussels, alive, alive, oh</div>
+` },
+  { title: "Dirty Old Town", lyrics: `<div class="verse">I met my love by the gasworks wallDreamed a dream by the old canalI kissed my girl by the factory wallDirty old townDirty old town</div>
+<div class="verse">Clouds are drifting across the moonCats are prowling on their beatSpring's a girl from the streets at nightDirty old townDirty old town</div>
+<div class="verse">I heard a siren from the docksSaw a train set the night on fireSmelled the spring on the smoky windDirty old townDirty old town</div>
+<div class="verse">I'm going to make a good sharp axeShining steel tempered in the fireI'll chop you down like an old dead tree, that's what they sayDirty old townDirty old town</div>
+<div class="verse">I met my love by the gasworks wallDreamed a dream by the old canalI kissed my girl by the factory wallDirty old townDirty old townDirty old townDirty old town</div>
+` },
+  { title: "Boolavogue", lyrics: `<div class="verse">At Boulogne, as the sun was settingO'er the bright may meadows of ShelmaliarOur rebel hand set the heather blazingAnd brought the neighbours from far and nearThen Father Murphy from old KilcormackSpurred up the rocks with a warning cry"Arm, arm", he cried, "for I've come to lead youFor Ireland’s freedom we'll fight and die"He led us on 'gainst the coming soldiersThe cowardly yeomen we put to flightIt was at the Harrow the boys of WexfordShowed Bookies' regiment how men could fightLook out for hirelings, King George of EnglandSearch ev'ry country where breathes a slaveFor Father Murphy from the County WexfordSweeps o'er the land like a mighty waveAt Vinegar Hill o'er the pleasant SlaneyOur heroes vainly stood back to backAnd the Yoes at Tullow took Father MurphyAnd they burned his body upon the rackGod grant you glory, brave Father MurphyAnd open heaven to all your menFor the cause that called you may call tomorrowIn another fight for the green again</div>
+` },
+  { title: "Raglan Road", lyrics: `<div class="verse">On Raglan Road on an autumn day I saw her first and knewThat her dark hair would weave a snare that I might one day rue;I saw the danger, yet I passed along the enchanted way,And I said, let grief be a fallen leaf at the dawning of the day.</div>
+<div class="verse">On Grafton Street in November we tripped lightly along the ledgeOf the deep ravine where can be seen the worth of passion's pledge,The Queen of Hearts still making tarts and I not making hayOh I loved too much and by such by such is happiness thrown away.</div>
+<div class="verse">I gave her gifts of the mind I gave her the secret sign that's knownTo the artists who have known the true gods of sound and stoneAnd word and tint without stint for I gave her poems to say.With her own name there and her own dark hair like clouds over fields of May</div>
+<div class="verse">On a quiet street where old ghosts meet I see her walking nowAway from me so hurriedly my reason must allowThat I had loved not as I should a creature made of clayWhen the angel woos the clay he'd lose his wings at the dawn of day.</div>
+` },
+  { title: "The Galway Shawl", lyrics: `<div class="verse">At Oranmore in the county GalwayOne pleasant evening in the month's of MayI spied a damsel, she was young and handsomeHer beauty fairly took my breath away</div>
+<div class="verse">We kept on walking she kept on talking'Till her fathers cottage came in to viewSaid she, 'Come in sir', and meet my fatherAnd play, to please him, 'The Foggy Dew'</div>
+<div class="verse">She worn no jewels, nor costly diamondsNo paint nor powder, no none at allBut she worn a bonnet with ribbons on itAnd 'round her shoulders was the Galway shawl</div>
+<div class="verse">She sat me down beside the hearthstoneI could see her father he was six feet tallAnd soon her mother, had the kettle singingAll I could think of, was the Galway shawl</div>
+<div class="verse">I played, 'The Black Bird', 'The Stack of Barley''Rodney's Glory' and 'The Foggy Dew'She sang each note like an Irish linnetAnd tears weld in her eyes of blue</div>
+<div class="verse">She worn no jewels, nor costly diamondsNo paint nor powder, no none at allBut she worn a bonnet with ribbons on itAnd 'round her shoulders was the Galway shawl</div>
+<div class="verse">'Twas early, early, all in the morningI hit the road for old DonegalSaid she, 'goodbye sir', she cried and kissed meBut my heart remain with the Galway shawl</div>
+<div class="chorus">She worn no jewels, nor costly diamondsNo paint nor powder, no none at allBut she worn a bonnet with ribbons on itAnd 'round her shoulders was the Galway shawl</div>
+` },
+  { title: "The Parting Glass", lyrics: `<div class="verse">Of all the money that e'er I hadI have spent it in good companyOh and all the harm I've ever doneAlas, it was to none but me</div>
+<div class="chorus">And all I've done for want of witTo memory now I can't recallSo fill to me the parting glassGood night and joy be to you all</div>
+<div class="chorus">So fill to me the parting glassAnd drink a health whate'er befallsThen gently rise and softly callGood night and joy be to you all</div>
+<div class="verse">Of all the comrades that e'er I hadThey're sorry for my going awayAnd all the sweethearts that e'er I hadThey would wish me one more day to stay</div>
+<div class="verse">But since it fell into my lotThat I should rise and you should notI'll gently rise and softly callGood night and joy be to you all</div>
+<div class="chorus">So fill to me the parting glassAnd drink a health whate'er befallsThen gently rise and softly callGood night and joy be to you all</div>
+<div class="chorus">But since it fell into my lotThat I should rise and you should notI'll gently rise and softly callGood night and joy be to you all</div>
+<div class="chorus">So fill to me the parting glassAnd drink a health whate'er befallsThen gently rise and softly callGood night and joy be to you all</div>
+<div class="verse">Good night and joy be to you all</div>
+` },
+  { title: "The Black Velvet Band", lyrics: `<div class="verse">In a neat little town they call BelfastApprentice to a trade I was boundAnd many's an hour's sweet happinessHave I spent in this neat little town.A sad misfortune came over meWhich caused me to stray from the landFar away from my friends and relationsBetrayed by the black velvet band.</div>
+<div class="chorus">Her eyes they shone like diamondsI thought her the queen of the landAnd her hair hung over her shouldersTied up with a black velvet band.</div>
+<div class="verse">I took a stroll down BroadwayMeaning not long for to stayWhen who should I meet but this pretty fair maidCame a traipsing along the highwayShe was both fair and handsomeHer neck it was just like a swans'And her hair is hung over her shoulderTied up with a black velvet band.</div>
+<div class="chorus">Her eyes they shone like diamondsI thought her the queen of the landAnd her hair hung over her shouldersTied up with a black velvet band.</div>
+<div class="verse">I took a stroll with this pretty fair maidAnd the gentleman passing us byWell I knew she meant the doing of himBy the look in her roguish black eyeA gold watch she took from his pocketAnd placed it right into my handAnd the very first thing I said wasBad 'cess to the black velvet band.</div>
+<div class="chorus">Her eyes they shone like diamondsI thought her the queen of the landAnd her hair hung over her shouldersTied up with a black velvet band.</div>
+<div class="verse">Before the judge and the juryNext morning I had to appearAnd the judge he said to me 'Young manYour case is proven clear'We'll give you seven years penal servitudeTo be spent far away from the landFar away from your friends and companionsBetrayed by the black velvet band.</div>
+<div class="chorus">Her eyes they shone like diamondsI thought her the queen of the landAnd her hair hung over her shouldersTied up with a black velvet band.</div>
+` },
+  { title: "Admiral William Brown", lyrics: `<div class="verse">From a County Mayo town cameA man of great renownAs a sailor and a soldier was none bolderHe went to Americay at an early age, they sayAs a cabin boy to sail the wide world overThen adventure took him south toThe de la Plata mouthSan Martin was on the route in ArgentinaSo three whaling ships he bought andBrazil and Spain he foughtAnd freedom then he sought for Argentina</div>
+<div class="chorus">Now Admiral William BrownYou're a man of courage shownAnd in battles fought the oddsWere all against youBut your Irish heart was strong andIn memory still lives onAnd in Ireland there are someThat don't forget youOn St patrick's day, it's toldYou had many victories boldYou defeated all invaders thugs and bullysThen through the Pampas rose andYou found a happy home'Las Islas Malvinas, Argentina'</div>
+<div class="chorus">He had heard of Irish handsIn a noble gallant bandThat helped to free the land called ArgentinaHe had heard with great acclaimThe Patricios name and fameWhen in eighteen-sixThe British came for slaughterAnd to this very day inThe Argentine they sayThe English ran away from Buenos AiresTo the islands further down and theyTook them for the crown'Las Islas Malvinas, Argentina'</div>
+<div class="chorus">We remember William Brown and hisLand of great renownHe, invader of the islands from your countryWhen in 1833 were by pirates forced to fleeAnd in Ireland, sure we know the story fullyAnd the people that went tooTo the Argentine when newTo escape the English lawsAnd wars and famineThey have proved a loyal crew justLike all the Irish do'Las Islas Malvinas, Argentina'</div>
+<div class="chorus">The old colonial days andThe cruel English waysWith her thunder plunder weWill teach the nativesFor the Brit's are going to warJust like Whitelocke did beforeWith her ships and guns andDrums and flags and bannersIn the Empire days of old whenThey murdered for the goldAnd paraded it around the streets of LondonOh, no human rights wereGiven to the natives, dead or living'Las Islas Malvinas, Argentina'</div>
+<div class="chorus">In the Argentine he diedFather Fahey by his side'57 was the year his country mourned himA hero of the nationHe's remembered with elationThroughout the world whereFreedom still aboundsAnd the Southern Cross take noteWhere bold Willie Bullfin wroteThe Irish still support you, ArgentinaWith the Empire tumbling downLet no Paddies back the crown'Las Islas Malvinas, Argentina'With the Empire tumbling downLet no Paddies back the crown'Las Islas Malvinas, Argentina'</div>
+` },
+  { title: "Grace", lyrics: `<div class="verse">As we gather in the chapel here in old Kilmainham Gaol</div>
+<div class="verse">I think about these past few weeks, oh, will they say we've failed?</div>
+<div class="verse">From our school days, they have told us we must yearn for liberty</div>
+<div class="verse">Yet, all I want in this dark place is to have you here with me</div>
+<div class="chorus">Oh, Grace, just hold me in your arms and let this moment linger</div>
+<div class="verse">They'll take me out at dawn and I will die</div>
+<div class="verse">With all my love, I place this wedding ring upon your finger</div>
+<div class="verse">There won't be time to share our love for we must say goodbye</div>
+<div class="verse">Now, I know it's hard for you, my love, to ever understand</div>
+<div class="verse">The love I bear for these brave men, my love for this dear land</div>
+<div class="verse">But when Padraig called me to his side down in the G.P.O.</div>
+<div class="verse">I had to leave my own sick bed, to him I had to go</div>
+<div class="chorus">Oh, Grace, just hold me in your arms and let this moment linger</div>
+<div class="verse">They'll take me out at dawn and I will die</div>
+<div class="verse">With all my love, I place this wedding ring upon your finger</div>
+<div class="verse">There won't be time to share our love for we must say goodbye</div>
+<div class="verse">Now, as the dawn is breaking, my heart is breaking, too</div>
+<div class="verse">On this May morn', as I walk out, my thoughts will be of you</div>
+<div class="verse">And I'll write some words upon the wall so everyone will know</div>
+<div class="verse">I loved so much that I could see his blood upon the rose</div>
+<div class="chorus">Oh, Grace, just hold me in your arms and let this moment linger</div>
+<div class="verse">They'll take me out at dawn, now I must die</div>
+<div class="verse">With all my love, I'll place this wedding ring upon your finger</div>
+<div class="verse">There won't be time to share our love for we must say goodbye</div>
+<div class="verse">Ah, there won't be time to share our love so we must say goodbye</div>
+` },
+  { title: "I'm a Man You Don't Meet Every Day", lyrics: `<div class="verse">Oh my name is Jock Stewart I'm a canny gun man</div>
+<div class="verse">And a roving young fellow I've been</div>
+<div class="chorus">So be easy and free when you're drinking with me</div>
+<div class="verse">I'm a man you don't meet every day</div>
+<div class="verse">I'm a piper by trade, I'm a roving young blade,</div>
+<div class="verse">And it's many the tune I do play.</div>
+<div class="chorus">So be easy and free when you're drinking with me</div>
+<div class="verse">I'm a man you don't meet every day</div>
+<div class="verse">I have acres of land I have men at command</div>
+<div class="verse">I have always a shilling to spare</div>
+<div class="chorus">So be easy and free when you're drinking with me</div>
+<div class="verse">I'm a man you don't meet every day</div>
+<div class="verse">With my dog and my gun, I'd go out for to shoot</div>
+<div class="verse">All along the green banks of the Spey.</div>
+<div class="chorus">So be easy and free when you're drinking with me</div>
+<div class="verse">I'm a man you don't meet every day</div>
+<div class="verse">So come fill up your glasses Of brandy and wine</div>
+<div class="verse">Whatever it costs, I will pay</div>
+<div class="chorus">So be easy and free when you're drinking with me</div>
+<div class="verse">I'm a man you don't meet every day</div>
+` },
+  { title: "Galway Bay", lyrics: `<div class="verse">If you ever go across the sea to Ireland</div>
+<div class="verse">Then maybe at the closing of your day</div>
+<div class="verse">You will sit and watch the moonrise over Claddagh</div>
+<div class="verse">And watch the barefoot gossoons at their play</div>
+<div class="verse">Just to hear again the ripple of the trout stream</div>
+<div class="verse">The women in the meadows making hay</div>
+<div class="verse">And to sit beside a turf fire in the cabin</div>
+<div class="verse">And see the sun go down on Galway Bay</div>
+<div class="verse">For the breezes blowing o'er the seas from Ireland</div>
+<div class="verse">Are perfumed by the heather as they blow</div>
+<div class="verse">And the women in the uplands diggin' praties</div>
+<div class="verse">Speak a language that the strangers do not know</div>
+<div class="verse">For the strangers came and tried to teach us their way</div>
+<div class="verse">They scorned us just for being what we are</div>
+<div class="verse">But they might as well go chasing after moonbeams</div>
+<div class="verse">Or light a penny candle from a star</div>
+<div class="verse">And if there is going to be a life hereafter</div>
+<div class="verse">And faith I'm sure there's going to be</div>
+<div class="verse">I will ask my God to let me make my heaven</div>
+<div class="verse">In that dear land across the Irish sea</div>
+<div class="verse">Fiddler’s Green</div>
+<div class="verse">As I walked by the dockside one evening so fair</div>
+<div class="verse">To view the salt waters and take in the salt air</div>
+<div class="verse">I heard an old fisherman singing a song</div>
+<div class="verse">Oh, take me away boys me time is not long</div>
+<div class="chorus">Wrap me up in me oilskin and Jumber</div>
+<div class="verse">No more on the docks I'll be seen</div>
+<div class="verse">Just tell me old shipmates, I'm taking a trip mates</div>
+<div class="verse">And I'll see you someday on Fiddlers Green</div>
+<div class="verse">Now Fiddler's Green is a place I've heard tell</div>
+<div class="verse">Where the fishermen go if they don't go to hell</div>
+<div class="verse">Where the sky is all clear and the dolphins do play</div>
+<div class="verse">And the cold coast of Greenland is far, far away</div>
+<div class="chorus">Wrap me up in me oilskin and Jumber</div>
+<div class="verse">No more on the docks I'll be seen</div>
+<div class="verse">Just tell me old shipmates, I'm taking a trip mates</div>
+<div class="verse">And I'll see you someday on Fiddlers Green</div>
+<div class="verse">Where the skies are all clear and there's never a gail</div>
+<div class="verse">And the fish jump on board with one swish on their tail</div>
+<div class="verse">Where you lie at your leisure, there's no work to do</div>
+<div class="verse">And the skipper's below making tea for the crew</div>
+<div class="chorus">Wrap me up in me oilskin and Jumber</div>
+<div class="verse">No more on the docks I'll be seen</div>
+<div class="verse">Just tell me old shipmates, I'm taking a trip mates</div>
+<div class="verse">And I'll see you someday on Fiddlers Green</div>
+<div class="verse">When you get by on dock and the long trip is through</div>
+<div class="verse">There's pubs and there's clubs and there's lassies there too</div>
+<div class="verse">Oh where the girls are all pretty and the beer is all free</div>
+<div class="verse">And there's bottles of rum growing on every tree</div>
+<div class="chorus">Wrap me up in me oilskin and Jumber</div>
+<div class="verse">No more on the docks I'll be seen</div>
+<div class="verse">Just tell me old shipmates, I'm taking a trip mates</div>
+<div class="verse">And I'll see you someday on Fiddlers Green</div>
+<div class="verse">Now I don't want a harp nor a halo, not me</div>
+<div class="verse">Just give me a breeze and a good rolling sea</div>
+<div class="verse">I'll play me old squeeze-box as we sail along</div>
+<div class="verse">With the wind in the riggin to sing me a song</div>
+<div class="chorus">Wrap me up in me oilskin and Jumber</div>
+<div class="verse">No more on the docks I'll be seen</div>
+<div class="verse">Just tell me old shipmates, I'm taking a trip mates</div>
+<div class="verse">And I'll see you someday on Fiddlers Green</div>
+` },
+  { title: "The Auld Triangle", lyrics: `<div class="chorus">A hungry feelingCame o'er me stealingAnd the mice were squealingIn my prison cellAnd that auld triangle went jingle-jangleAll along the banks of the Royal Canal</div>
+<div class="chorus">To begin the morningThe screw was bawling"Get up ya loser and clean up your cell!"And that auld triangle went jingle-jangleAll along the banks of the Royal Canal</div>
+<div class="chorus">Now the screw was peepingAs the lag lay sleepingDreaming about his girl SalAnd that auld triangle went jingle-jangleAll along the banks of the Royal Canal</div>
+<div class="chorus">Oh! the wind was risingAnd the day decliningAs a lady, I'm prayingIn my prison cellAnd that auld triangle went jingle-jangleAll along the banks of the Royal Canal</div>
+<div class="chorus">In the female prisonThere are 75 womenAnd among them now, I wish I did dwellThen that auld triangle could go jingle-jangleAll along the banks of the Royal Canal</div>
+` }
+];
+
+let currentIndex = -1;
+
+function renderList(filtered) {
+  const list = document.getElementById('songList');
+  const count = document.getElementById('songCount');
+  list.innerHTML = '';
+  count.textContent = filtered.length + (filtered.length === 1 ? ' canción' : ' canciones');
+  if (!filtered.length) {
+    list.innerHTML = '<li style="font-family:Cinzel,serif;font-size:.7rem;letter-spacing:.2em;color:var(--muted);padding:20px 0;text-transform:uppercase;text-align:center;">Sin resultados</li>';
+    return;
+  }
+  filtered.forEach(song => {
+    const idx = songs.indexOf(song);
+    const li = document.createElement('li');
+    li.className = 'song-item' + (idx === currentIndex ? ' active' : '');
+    li.innerHTML = `<span class="song-num">${String(idx+1).padStart(2,'0')}</span><span>${song.title}</span>`;
+    li.onclick = () => showSong(idx);
+    list.appendChild(li);
+  });
+}
+
+function showSong(idx) {
+  currentIndex = idx;
+  const song = songs[idx];
+  const panel = document.getElementById('lyricsPanel');
+  panel.style.transition = 'opacity .25s';
+  panel.style.opacity = '0';
+  setTimeout(() => {
+    panel.innerHTML = `<div class="lyrics-header"><div class="lyrics-title">${song.title}</div><div class="lyrics-meta">The Irish Ghosts &nbsp;·&nbsp; La Misa Ghost</div></div><div class="lyrics-body">${song.lyrics}</div>`;
+    panel.style.opacity = '1';
+    if (window.innerWidth <= 680) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+  document.querySelectorAll('.song-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.song-item').forEach(el => {
+    if (songs[idx] && el.querySelector('span:last-child') && el.querySelector('span:last-child').textContent === song.title) el.classList.add('active');
+  });
+}
+
+function filterSongs() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  renderList(q ? songs.filter(s => s.title.toLowerCase().includes(q)) : songs);
+}
+
+renderList(songs);
+</script>
+</body>
+</html>
